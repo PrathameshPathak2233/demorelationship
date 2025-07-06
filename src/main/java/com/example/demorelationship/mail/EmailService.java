@@ -31,4 +31,13 @@ public class EmailService {
 
     }
 
+    public void sendmail(String mailId)
+    {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(fromMail);
+        mailMessage.setTo(mailId);
+        mailMessage.setSubject("Fees Remainder Mail");
+        mailMessage.setText("Please pay your fees at earliest");
+        javaMailSender.send(mailMessage);
+    }
 }

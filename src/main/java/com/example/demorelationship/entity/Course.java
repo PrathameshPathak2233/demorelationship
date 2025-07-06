@@ -10,10 +10,6 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Course {
 
@@ -23,6 +19,58 @@ public class Course {
     private Long id;
 
     private String name;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public Course() {
+    }
+
+    public Course(Long id, String name, Student student, Set<Teacher> teachers) {
+        this.id = id;
+        this.name = name;
+        this.student = student;
+        this.teachers = teachers;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", student=" + student +
+                ", teachers=" + teachers +
+                '}';
+    }
 
     @ManyToOne
     @JoinColumn(name = "student_id")

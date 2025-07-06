@@ -1,21 +1,23 @@
 package com.example.demorelationship.controller;
 
+import com.example.demorelationship.entity.EmailId;
 import com.example.demorelationship.entity.Student;
+import com.example.demorelationship.mail.EmailService;
 import com.example.demorelationship.repository.StudentRepository;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/student-op")
@@ -23,6 +25,9 @@ public class StudentController {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    EmailService emailService;
 
     @PostMapping("/add-student")
     public Student addStudent(@RequestBody Student student) {
@@ -67,6 +72,18 @@ public class StudentController {
 
     }
 
-
+    @GetMapping("/sendEmail/{id}")
+    public String sendMailToStudent(@PathVariable Long id)
+    {
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            student.get().getEmailIdSet().forEach(emailId -> emailService.sendmail(emailId.getMailId()));
+            return "Mail sent to Student";
+        }
+        else
+        {
+            return "Student not found for sending mail";
+        }
+    }
 
 }
