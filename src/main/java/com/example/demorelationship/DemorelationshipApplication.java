@@ -12,6 +12,7 @@ public class DemorelationshipApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemorelationshipApplication.class, args);
+		// Prath please add your code here
 	}
 
 }
