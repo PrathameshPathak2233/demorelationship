@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 public class EmailId {
 
@@ -28,4 +25,45 @@ public class EmailId {
     // Fees paid --mail send --please pay fees asap --
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMailId() {
+        return mailId;
+    }
+
+    public void setMailId(String mailId) {
+        this.mailId = mailId;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public EmailId() {
+    }
+
+    public EmailId(Long id, String mailId, Student student) {
+        this.id = id;
+        this.mailId = mailId;
+        this.student = student;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailId{" +
+                "id=" + id +
+                ", mailId='" + mailId + '\'' +
+                ", student=" + student +
+                '}';
+    }
 }

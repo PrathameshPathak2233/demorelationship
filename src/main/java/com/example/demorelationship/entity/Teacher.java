@@ -9,10 +9,7 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 public class Teacher {
 
@@ -30,5 +27,45 @@ public class Teacher {
     @ManyToMany(mappedBy = "teachers")
     private Set<Course> courseSet = new HashSet<>();
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Course> getCourseSet() {
+        return courseSet;
+    }
+
+    public void setCourseSet(Set<Course> courseSet) {
+        this.courseSet = courseSet;
+    }
+
+    public Teacher() {
+    }
+
+    public Teacher(Long id, String name, Set<Course> courseSet) {
+        this.id = id;
+        this.name = name;
+        this.courseSet = courseSet;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", courseSet=" + courseSet +
+                '}';
+    }
 }
