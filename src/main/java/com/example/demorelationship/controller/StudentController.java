@@ -86,4 +86,8 @@ public class StudentController {
         }
     }
 
+    public List<Student> getStudentsBYDescByPercentage() {
+        // Prath please add your code here
+        return null;
+    }
 }
