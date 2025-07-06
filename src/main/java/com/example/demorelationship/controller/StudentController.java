@@ -72,7 +72,6 @@ public class StudentController {
 
     }
 
-    // Api to trigger mail to specific student
     @GetMapping("/sendEmail/{id}")
     public String sendMailToStudent(@PathVariable Long id)
     {
